@@ -1,47 +1,44 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+  export default{
+    data(){
+      return {
+        name: 'Jonh',
+        status: true,
+        status1: 'active',
+        tasks: ['test1','test2'],
+        link: 'https://chatgpt.com/c/67ea0af1-3cdc-800f-a52d-d4e8233f5d90',
+      }
+    },
+    methods: {
+      ToggleStatus(){
+        if(this.status1 === 'active' ){
+          this.status1 = 'pedding';
+        }else if(this.status1 === 'pedding'){
+          this.status1 = 'inactive';
+        }else{
+          this.status1 = 'active';
+        }
+      },
+    },
+  }
 </script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <h1>{{ name }}</h1>
+  <p v-if="status">true</p>
+  <p v-else>not</p>
+  <p v-if="status1 === 'active'">active</p>
+  <p v-if="status1 === 'pedding'">pedding</p>
+  <h1>Task:</h1>
+  <ul>
+    <li v-for = "task in tasks" :key="task">
+      {{ task }}
+    </li>
+  </ul>
+  <a :href="link">google</a>
+  <button @click="ToggleStatus">Change Status</button>
 </template>
-
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  h1{
+    color: red;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
